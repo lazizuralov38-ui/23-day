@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Startap G'oyasi Generatori</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --dim: #6b6b85;
+    --accent: #6c5ce7;
+    --accent2: #00c2a8;
+    --bg: #f4f3fb;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 16px 50px;
+    font-family: 'Manrope', sans-serif;
+    color: var(--ink);
+  }
+
+  .pitch-card {
+    width: 100%;
+    max-width: 460px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(108,92,231,0.25);
+  }
+
+  .hero {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    padding: 30px 26px 26px;
+    text-align: center;
+    position: relative;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.22);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+  }
+
+  .company-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    margin: 0 0 10px;
+    line-height: 1.1;
+  }
+
+  .tagline {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    opacity: 0.95;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  .body-area {
+    background: #fff;
+    padding: 22px 26px 26px;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .stat {
+    text-align: center;
+    background: #f7f6fd;
+    border-radius: 10px;
+    padding: 10px 4px;
+  }
+
+  .stat-value {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--accent);
+  }
+
+  .stat-label {
+    font-size: 0.62rem;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+
+  .pitch-line {
+    font-size: 0.85rem;
+    color: #44445c;
+    line-height: 1.55;
+    background: #f7f6fd;
+    border-left: 3px solid var(--accent2);
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .tag {
+    background: #eeecfc;
+    color: var(--accent);
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 12px;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .cta-btn {
+    flex: 1;
+    background: var(--ink);
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.82rem;
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .status-note {
+    font-size: 0.65rem;
+    color: var(--dim);
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  button#regen-btn {
+    margin-top: 24px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 13px 28px;
+    border-radius: 24px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(108,92,231,0.35);
+    transition: filter 0.15s ease, transform 0.1s ease;
+  }
+  button#regen-btn:hover { filter: brightness(1.08); }
+  button#regen-btn:active { transform: translateY(2px); }
+</style>
+</head>
+<body>
+
+<div class="pitch-card">
+  <div class="hero">
+    <span class="badge">Pre-seed · Taqdimot</span>
+    <h1 class="company-name" id="company-name">StartapNomi</h1>
+    <p class="tagline" id="tagline">—</p>
+  </div>
+  <div class="body-area">
+    <div class="stats-row">
+      <div class="stat"><div class="stat-value" id="stat-market">—</div><div class="stat-label">Bozor hajmi</div></div>
+      <div class="stat"><div class="stat-value" id="stat-ask">—</div><div class="stat-label">So'ralmoqda</div></div>
+      <div class="stat"><div class="stat-value" id="stat-valuation">—</div><div class="stat-label">Baholash</div></div>
+    </div>
+    <p class="pitch-line" id="pitch-line">—</p>
+    <div class="tags" id="tags"></div>
+    <div class="cta-row">
+      <div class="cta-btn">Investitsiya qilish</div>
+    </div>
+    <p class="status-note">* Mahsulot hali ishga tushirilmagan va ehtimol hech qachon tushmaydi</p>
+  </div>
+</div>
+
+<button id="regen-btn">Yangi startap g'oyasi</button>
+
+<script>
+  const namePrefixes = ["Zing", "Flux", "Nova", "Byte", "Loop", "Pulse", "Vibe", "Drift", "Spark", "Glow", "Shift", "Orbit"];
+  const nameSuffixes = ["ly", "io", "AI", "Hub", "Base", "Labs", "ify", "X", "Go", "Cloud"];
+
+  const problems = [
+    "ikkinchi paypoqning doimiy yo'qolib turishi",
+    "choyning juda tez sovib qolishi",
+    "pult tugmachasini divan ichidan qidirish",
+    "uyqu paytida telefonning yuzga tushib ketishi",
+    "salat barglarining vilkadan uchib ketishi",
+    "liftni kutish paytidagi noqulay sukunat",
+    "ikki kishi orasidagi \"sen birinchi gapir\" muammosi",
+    "kir mashinada bitta paypoqning g'oyib bo'lishi",
+    "telefon batareyasining eng noqulay paytda tugashi",
+    "qahvaning sovib, qayta isitishga arzimay qolishi",
+    "Wi-Fi parolini mehmonlarga tushuntirishning murakkabligi",
+    "yostiqning sovuq tomonini topish uchun sarflanadigan vaqt"
+  ];
+
+  const techBuzzwords = [
+    "sun'iy intellekt (AI)", "blokcheyn", "katta ma'lumotlar (Big Data)", "IoT sensorlar",
+    "mashinaviy o'rganish", "bulutli hisoblash", "kvant algoritmlari", "AR/VR texnologiyasi",
+    "neyron tarmoqlar", "predictive analytics"
+  ];
+
+  const pitchLines = [
+    "Biz bu sohani butunlay qayta ixtiro qilmoqchimiz — garchi u hali ixtiro qilinmagan bo'lsa ham.",
+    "Tasavvur qiling: Uber, lekin bu muammo uchun. Aynan shu g'oya.",
+    "Bizning jamoamiz bu muammoni hal qilish o'rniga, uni yanada qiziqarli qilib ko'rsatishga qaror qildi.",
+    "Hali foydalanuvchimiz yo'q, lekin pitch deck'imiz juda chiroyli.",
+    "Raqobatchilarimiz yo'q, chunki bu muammoni hech kim muammo deb hisoblamaydi.",
+    "Biznes modelimiz oddiy: avval foydalanuvchi toping, keyin nima qilishni o'ylab ko'ring.",
+    "Mahsulotimiz hali mavjud emas, lekin domen nomini sotib oldik.",
+    "Investorlarimiz bizga ishonadi, chunki ular ham tushunmaydi bu nima."
+  ];
+
+  const tagPool = ["Disruptiv", "Skalalanuvchan", "Sinergetik", "Innovatsion", "B2B2C", "Asymmetric Growth", "Zero-to-One", "Hyper-growth"];
+
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+  const companyNameEl = document.getElementById('company-name');
+  const taglineEl = document.getElementById('tagline');
+  const statMarket = document.getElementById('stat-market');
+  const statAsk = document.getElementById('stat-ask');
+  const statValuation = document.getElementById('stat-valuation');
+  const pitchLineEl = document.getElementById('pitch-line');
+  const tagsEl = document.getElementById('tags');
+  const regenBtn = document.getElementById('regen-btn');
+
+  function generate() {
+    const name = pick(namePrefixes) + pick(nameSuffixes);
+    companyNameEl.textContent = name;
+
+    const problem = pick(problems);
+    const tech = pick(techBuzzwords);
+    taglineEl.textContent = `${name} — ${problem} muammosini ${tech} yordamida hal qiladi.`;
+
+    statMarket.textContent = '$' + (Math.floor(Math.random() * 90) + 10) + 'B';
+    statAsk.textContent = '$' + (Math.floor(Math.random() * 900) + 100) + 'K';
+    statValuation.textContent = '$' + (Math.floor(Math.random() * 40) + 5) + 'M';
+
+    pitchLineEl.textContent = pick(pitchLines);
+
+    tagsEl.innerHTML = '';
+    shuffle(tagPool).slice(0, 4).forEach(t => {
+      const span = document.createElement('span');
+      span.className = 'tag';
+      span.textContent = t;
+      tagsEl.appendChild(span);
+    });
+  }
+
+  regenBtn.addEventListener('click', generate);
+  generate();
+</script>
+
+</body>
+</html>
